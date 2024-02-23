@@ -27,7 +27,7 @@ Activate the environment
 - Windows: `env/Scripts/activate.bat`
 
 Install the required modules
-- `pip install requirements.txt`
+- `pip install -r requirements.txt`
 
 
 ### How to start and execute the pvlib
