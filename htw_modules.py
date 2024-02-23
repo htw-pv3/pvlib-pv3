@@ -15,7 +15,8 @@ def create_modules_df():
 
     Returns
     -------
-
+    DataFrame
+        Empty pandas DataFrame with index rows due to the CEC (California Energy Commission) convention.
     """
     # Module parameter due to CEC module database (California Energy Commission)
     module_param_keys = [
@@ -53,10 +54,13 @@ def create_modules_df():
 def modul1():
     """
     Creates a pandas dataframe of modul 1 (Schott ASI 105) of the htw pv-system.
-    *WARNING*: This function currently returns the "BannerSolar_ISB20_1BSTC_105" module!
+
+    **WARNING**: This function currently returns the "BannerSolar_ISB20_1BSTC_105" module!
 
     Returns
     -------
+    DataFrame
+        Contains the module parameters due to CEC convention.
 
     """
 
@@ -102,6 +106,8 @@ def modul2():
 
     Returns
     -------
+    DataFrame
+        Contains the module parameters due to CEC convention.
 
     """
 
@@ -112,10 +118,13 @@ def modul2():
 def modul3():
     """
     Creates a pandas dataframe of modul 3 (Aleo Solar S18 240) of the htw pv-system.
-    *WARNING*: This function currently returns the "alfasolar_alfasolar_P6L60_240" module!
+
+    **WARNING**: This function currently returns the "alfasolar_alfasolar_P6L60_240" module!
 
     Returns
     -------
+    DataFrame
+        Contains the module parameters due to CEC convention.
 
     """
 
@@ -158,10 +167,13 @@ def modul3():
 def modul4():
     """
     Creates a pandas dataframe of modul 3 (Aleo Solar S19 245) of the htw pv-system.
-    *WARNING*: This function currently returns the "American_Solar_Wholesale_ASW_245P" module!
+
+    **WARNING**: This function currently returns the "American_Solar_Wholesale_ASW_245P" module!
 
     Returns
     -------
+    DataFrame
+        Contains the module parameters due to CEC convention.
 
     """
 

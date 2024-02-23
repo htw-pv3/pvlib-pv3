@@ -4,9 +4,15 @@
 """
 This is the main script which collects all functions and calculates the yield for the PV-System.
 
-Infos: Pandas throws a warning:
-    (df["col"][row_indexer] = value
+Infos:
+    Pandas throws a warning:
+        (df["col"][row_indexer] = value
     This is caused by pvlib because they are using an older syntax of pandas. This can be ignored.
+
+    If the following warning is showing up and you do not get a plot, you are probably using linux.
+        UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+        plt.show()
+    To fix this you just have to install pyqt5 (pip install pyqt5)
 
     nomenclature for pv-software: https://duramat.github.io/pv-terms/
 """
@@ -23,6 +29,24 @@ import htw_weather
 
 
 def setup_model(name, system, location):
+    """
+    From: `pvlib.modelchain.ModelChain`
+
+    Parameters
+    ----------
+    name: Str
+        name of the pv-system
+    system: Object
+        system parameters (pvlib.pvsystem.PVSystem object)
+    location: Object
+        location (pvlib.location.Location)
+
+    Returns
+    -------
+    Object
+        pvlib ModelChain object (pvlib.modelchain.ModelChain)
+
+    """
     return pvlib.modelchain.ModelChain(system=system,
                                        location=location,
                                        # clearsky_model='ineichen',

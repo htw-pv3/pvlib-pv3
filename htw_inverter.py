@@ -13,8 +13,10 @@ def inv1():
     """
     Import the Inverter Danfoss DLX 2.9 to pvlib
 
-    :return:
-    inverter dictionary, type: sandia model
+    Returns
+    -------
+    Dictionary
+        inverter dictionary, type: sandia model
     """
     # inverter efficiency at different power points (source: PV*SOL)
     eta_min = [0, 0.953, 0.959, 0.963, 0.9612, 0.959]  # P/P_max = 0, 0.2, 0.3, 0.5, 0.75, 1; U = 210V
@@ -58,8 +60,10 @@ def inv2():
     """
     Import the Inverter SMA SUNNY BOY 3000HF to pvlib
 
-    :return:
-    inverter dictionary, type: sandia model
+    Returns
+    -------
+    Dictionary
+        inverter dictionary, type: sandia model
     """
     # inverter efficiency at different power points (source: SMA WirkungDerat-TI-de-36 | Version 3.6)
     eta_min = [0, 0.942, 0.95, 0.951, 0.94, 0.932]  # P/P_max = 0, 0.2, 0.3, 0.5, 0.75, 1; U = 210V
