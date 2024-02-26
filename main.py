@@ -23,7 +23,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Import own modules
-from config import HTW_LON, HTW_LAT, PATH_HTW_WEATHER, PATH_FRED_WEATHER
+from config import HTW_LON, HTW_LAT, PATH_HTW_WEATHER, PATH_FRED_WEATHER, PATH_RESULTS
 import htw_modules, htw_inverter
 import htw_weather
 
@@ -268,30 +268,37 @@ if __name__ == "__main__":
     for model in models:
         model.run_model(weather=weather_htw)
 
-    # Show the results
+    # Create monthly results DataFrame
     result_monthly = pd.DataFrame()
-    result_annual = []
-
-    # Monthly
     for model in models:
-        result_monthly[model.name] = model.results.ac.resample('ME').sum() / 1000  # in kWh
-        result_annual.append(result_monthly.sum().values[-1])
+        result_monthly[model.name] = round(model.results.ac.resample('ME').sum() / 1000, 1)  # in kWh
 
+    # Create annual results DataFrame
+    result_annual = pd.DataFrame({
+        "annual_yield": result_monthly.sum()
+    })
+
+    # Show the results (console)
     print("#" * 50)
-    print("Execution complete!")
-    print("#" * 50)
-    print("\n")
-    print("#"*10, "Result Monthly", "#"*10)
-    print(result_monthly)
-    print("\n")
-    print("#" * 10, "Result Annual", "#" * 10)
-    print(result_annual)
-    print("\n")
-    print("#" * 10, "Result Total", "#" * 10)
-    print(sum(result_annual))
+    print(f"{' Execution successful! ':^50}")
+    print("#" * 50, "\n")
+
+    print(f"{' Results Monthly ':#^50}")
+    print(result_monthly, "\n")
+
+    print(f"{' Results Annual ':#^50}")
+    print(result_annual, "\n")
+
+    print(f"{' Results Total ':#^50}")
+    print(result_annual.sum())
+
+    # Export the results to csv files
+    result_monthly.to_csv(path_or_buf=fr"{PATH_RESULTS}results_monthly.csv", sep=";", encoding="utf-8")
+    # result_annual.to_csv(path_or_buf=fr"{PATH_RESULTS}results_annual.csv", sep=";", encoding="utf-8")
 
     # Plot the monthly yield
     result_monthly.index = result_monthly.index.astype(str)
     result_monthly.plot.bar(rot=90, title="Monthly yield", ylabel="Energy in kWh", grid=True)
     plt.tight_layout()
-    plt.show()
+    # plt.show()
+    plt.savefig("monthly_yield.png")
