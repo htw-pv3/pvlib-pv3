@@ -84,10 +84,10 @@ if __name__ == "__main__":
     # Set the Albedo
     albedo = 0.2
 
-    # Set the temperature model
-    temperature_model_parameters = pvlib.temperature.TEMPERATURE_MODEL_PARAMETERS['sapm']['close_mount_glass_glass']
+    # Set the temperature model ("open_rack_glass_polymer" (higher yield) or "close_mount_glass_glass")
+    temperature_model_parameters = pvlib.temperature.TEMPERATURE_MODEL_PARAMETERS['sapm']['open_rack_glass_polymer']
 
-    # pvwatts default losses:
+    # pvwatts default losses (Just for your information. Changing the values do not affect the calculation!):
     pvwatts_losses = {"soiling": 2,
                       "shading": 3,
                       "snow": 0,
