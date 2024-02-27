@@ -17,7 +17,7 @@ def calculate_diffuse_irradiation(df, parameter_name, lat, lon):
 
     Parameters
     ----------
-    df : DataFrame
+    df : pd.DataFrame
         Global Horizontal Irradiance (GHI) with datetime index
     parameter_name : str
         Name of column with GHI
@@ -25,9 +25,10 @@ def calculate_diffuse_irradiation(df, parameter_name, lat, lon):
         Latitude
     lon : float
         Longitude
+
     Returns
     -------
-    df_irradiance_combined : DataFrame
+    df_irradiance_combined : pd.DataFrame
         Calculated
             dni: the modeled direct normal irradiance in W/m^2.
             dhi: the modeled diffuse horizontal irradiance in W/m^2.
@@ -56,9 +57,22 @@ def convert_column_names(df, time, ghi, wind_speed, temp_air):
     """
     Converts the columns of a DataFrame and returns a DataFrame
 
+    Parameters
+    ----------
+    df: pd.DataFrame
+        Pandas DataFrame
+    time: str
+        Column name that contains the time.
+    ghi: str
+        Column name that contains the global horizontal irradiation values.
+    wind_speed: str
+        Colum name that contains the wind speed values.
+    temp_air: str
+    Column name that contains the air temperature values.
+
     Returns
     -------
-    DataFrame
+    pd.DataFrame
         Original DataFrame with the timestamp column as index and changed column names.
     """
     # set the correct column names
@@ -84,14 +98,14 @@ if __name__ == "__main__":
 
     # For the htw weather file you have to change the column names
     # and calculate the diffuse irradiation (dhi and dni).
-    df_htw = pd.read_csv(PATH_HTW_WEATHER, sep=";")  # Read the file
+    df_htw = pd.read_csv(PATH_HTW_WEATHER, sep=";")  # Read the file (mview!)
 
     # For the fred file you only have to read the data because the column names are correct
     # and the diffuse irradiation is already available.
     df_fred = pd.read_csv(PATH_FRED_WEATHER, sep=",")  # Read the file
 
     # Convert the column names for the htw weather and calculate the diffuse irradiation.
-    df_htw = convert_column_names(df_htw, time="timestamp", ghi="G_hor_Si", wind_speed="v_Wind", temp_air="T_Luft")
+    df_htw = convert_column_names(df_htw, time="timestamp", ghi="g_hor_si", wind_speed="v_wind", temp_air="t_Luft")
     df_htw = calculate_diffuse_irradiation(df_htw, parameter_name="ghi", lat=HTW_LAT, lon=HTW_LON)
 
     # Column names are already correct but the "timestamp" column has to be set as Index
@@ -110,4 +124,6 @@ if __name__ == "__main__":
     print("Maximum global horizontal irradiation:")
     print("htw:", df_htw.ghi.max())
     print("fred:", df_fred.ghi.max())
-
+    print("\n")
+    print(f"HTW: Total anual irradiation: {round(weather_htw.ghi.sum() / 1000, 1)} kWh/m²")
+    print(f"Openfred: Total anual irradiation: {round(weather_fred.ghi.sum() / 1000, 1)} kWh/m²")

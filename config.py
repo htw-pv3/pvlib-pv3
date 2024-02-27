@@ -6,7 +6,7 @@ In this config file you have to assign the variables which are used in the calcu
 """
 
 # Define the paths of the weather-data files.
-PATH_HTW_WEATHER = r"htw_wetter_weatherdata_2015.csv"
+PATH_HTW_WEATHER = r"pv3_weather_2015_filled_mview.csv"
 PATH_FRED_WEATHER = r"openfred_weatherdata_2015_htw.csv"
 
 # Define the location of the PV-system (lat, lon).

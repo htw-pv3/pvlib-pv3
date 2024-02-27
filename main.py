@@ -24,7 +24,8 @@ import matplotlib.pyplot as plt
 
 # Import own modules
 from config import HTW_LON, HTW_LAT, PATH_HTW_WEATHER, PATH_FRED_WEATHER, PATH_RESULTS
-import htw_modules, htw_inverter
+import htw_modules
+import htw_inverter
 import htw_weather
 
 
@@ -34,16 +35,16 @@ def setup_model(name, system, location):
 
     Parameters
     ----------
-    name: Str
+    name: str
         name of the pv-system
-    system: Object
+    system: object
         system parameters (pvlib.pvsystem.PVSystem object)
-    location: Object
+    location: object
         location (pvlib.location.Location)
 
     Returns
     -------
-    Object
+    pvlib.modelchain.ModelChain
         pvlib ModelChain object (pvlib.modelchain.ModelChain)
 
     """
@@ -90,11 +91,11 @@ if __name__ == "__main__":
     pvwatts_losses = {"soiling": 2,
                       "shading": 3,
                       "snow": 0,
-                      "mismatch":2,
+                      "mismatch": 2,
                       "wiring": 2,
                       "connections": 0.5,
                       "lid": 1.5,
-                      "nameplate_rating":1,
+                      "nameplate_rating": 1,
                       "age": 0,
                       "availability": 3
                       }
@@ -247,12 +248,13 @@ if __name__ == "__main__":
 
     # Get the weather-data
     # Read the file
-    df_htw = pd.read_csv(PATH_HTW_WEATHER, sep=";")
+    df_htw = pd.read_csv(PATH_HTW_WEATHER, sep=";")  # (mview!)
     df_fred = pd.read_csv(PATH_FRED_WEATHER, sep=",")
 
     # Convert the column names for the htw weather.
-    df_htw = htw_weather.convert_column_names(df_htw, time="timestamp", ghi="G_hor_Si",
-                                              wind_speed="v_Wind", temp_air="T_Luft")
+    df_htw = htw_weather.convert_column_names(df_htw, time="timestamp", ghi="g_hor_si",
+                                              wind_speed="v_wind", temp_air="t_luft")
+
     df_fred = htw_weather.convert_column_names(df_fred, time="time", ghi="ghi",
                                                wind_speed="wind_speed", temp_air="temp_air")
 
@@ -260,10 +262,12 @@ if __name__ == "__main__":
     df_htw = htw_weather.calculate_diffuse_irradiation(df_htw, parameter_name="ghi", lat=HTW_LAT, lon=HTW_LON)
 
     # Assign the weather DataFrame hourly resampled
-    weather_htw = df_htw.resample("h").mean()  # in Wh
+    weather_htw = df_htw[["ghi", "dni", "dhi"]]  # only keep the important columns which are able to resample
+    weather_htw = weather_htw.resample("h").mean()  # in Wh
     weather_fred = df_fred.resample("h").mean()  # in Wh
     weather_fred = weather_fred[weather_fred.index.year > 2014]
 
+    # TODO: Run model with both weather data and compare!
     # Run the model
     for model in models:
         model.run_model(weather=weather_htw)
