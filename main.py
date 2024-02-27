@@ -4,9 +4,15 @@
 """
 This is the main script which collects all functions and calculates the yield for the PV-System.
 
-Infos: Pandas throws a warning:
-    (df["col"][row_indexer] = value
+Infos:
+    Pandas throws a warning:
+        (df["col"][row_indexer] = value
     This is caused by pvlib because they are using an older syntax of pandas. This can be ignored.
+
+    If the following warning is showing up and you do not get a plot, you are probably using linux.
+        UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+        plt.show()
+    To fix this you just have to install pyqt5 (pip install pyqt5)
 
     nomenclature for pv-software: https://duramat.github.io/pv-terms/
 """
@@ -17,12 +23,31 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Import own modules
-from config import HTW_LON, HTW_LAT, PATH_HTW_WEATHER, PATH_FRED_WEATHER
-import htw_modules, htw_inverter
+from config import HTW_LON, HTW_LAT, PATH_HTW_WEATHER, PATH_FRED_WEATHER, PATH_RESULTS
+import htw_modules
+import htw_inverter
 import htw_weather
 
 
 def setup_model(name, system, location):
+    """
+    From: `pvlib.modelchain.ModelChain`
+
+    Parameters
+    ----------
+    name: str
+        name of the pv-system
+    system: object
+        system parameters (pvlib.pvsystem.PVSystem object)
+    location: object
+        location (pvlib.location.Location)
+
+    Returns
+    -------
+    pvlib.modelchain.ModelChain
+        pvlib ModelChain object (pvlib.modelchain.ModelChain)
+
+    """
     return pvlib.modelchain.ModelChain(system=system,
                                        location=location,
                                        # clearsky_model='ineichen',
@@ -66,11 +91,11 @@ if __name__ == "__main__":
     pvwatts_losses = {"soiling": 2,
                       "shading": 3,
                       "snow": 0,
-                      "mismatch":2,
+                      "mismatch": 2,
                       "wiring": 2,
                       "connections": 0.5,
                       "lid": 1.5,
-                      "nameplate_rating":1,
+                      "nameplate_rating": 1,
                       "age": 0,
                       "availability": 3
                       }
@@ -223,12 +248,13 @@ if __name__ == "__main__":
 
     # Get the weather-data
     # Read the file
-    df_htw = pd.read_csv(PATH_HTW_WEATHER, sep=";")
+    df_htw = pd.read_csv(PATH_HTW_WEATHER, sep=";")  # (mview!)
     df_fred = pd.read_csv(PATH_FRED_WEATHER, sep=",")
 
     # Convert the column names for the htw weather.
-    df_htw = htw_weather.convert_column_names(df_htw, time="timestamp", ghi="G_hor_Si",
-                                              wind_speed="v_Wind", temp_air="T_Luft")
+    df_htw = htw_weather.convert_column_names(df_htw, time="timestamp", ghi="g_hor_si",
+                                              wind_speed="v_wind", temp_air="t_luft")
+
     df_fred = htw_weather.convert_column_names(df_fred, time="time", ghi="ghi",
                                                wind_speed="wind_speed", temp_air="temp_air")
 
@@ -236,38 +262,47 @@ if __name__ == "__main__":
     df_htw = htw_weather.calculate_diffuse_irradiation(df_htw, parameter_name="ghi", lat=HTW_LAT, lon=HTW_LON)
 
     # Assign the weather DataFrame hourly resampled
-    weather_htw = df_htw.resample("h").mean()  # in Wh
+    weather_htw = df_htw[["ghi", "dni", "dhi"]]  # only keep the important columns which are able to resample
+    weather_htw = weather_htw.resample("h").mean()  # in Wh
     weather_fred = df_fred.resample("h").mean()  # in Wh
     weather_fred = weather_fred[weather_fred.index.year > 2014]
 
+    # TODO: Run model with both weather data and compare!
     # Run the model
     for model in models:
         model.run_model(weather=weather_htw)
 
-    # Show the results
+    # Create monthly results DataFrame
     result_monthly = pd.DataFrame()
-    result_annual = []
-
-    # Monthly
     for model in models:
-        result_monthly[model.name] = model.results.ac.resample('ME').sum() / 1000  # in kWh
-        result_annual.append(result_monthly.sum().values[-1])
+        result_monthly[model.name] = round(model.results.ac.resample('ME').sum() / 1000, 1)  # in kWh
 
+    # Create annual results DataFrame
+    result_annual = pd.DataFrame({
+        "annual_yield": result_monthly.sum()
+    })
+
+    # Show the results (console)
     print("#" * 50)
-    print("Execution complete!")
-    print("#" * 50)
-    print("\n")
-    print("#"*10, "Result Monthly", "#"*10)
-    print(result_monthly)
-    print("\n")
-    print("#" * 10, "Result Annual", "#" * 10)
-    print(result_annual)
-    print("\n")
-    print("#" * 10, "Result Total", "#" * 10)
-    print(sum(result_annual))
+    print(f"{' Execution successful! ':^50}")
+    print("#" * 50, "\n")
+
+    print(f"{' Results Monthly ':#^50}")
+    print(result_monthly, "\n")
+
+    print(f"{' Results Annual ':#^50}")
+    print(result_annual, "\n")
+
+    print(f"{' Results Total ':#^50}")
+    print(result_annual.sum())
+
+    # Export the results to csv files
+    result_monthly.to_csv(path_or_buf=fr"{PATH_RESULTS}results_monthly.csv", sep=";", encoding="utf-8")
+    # result_annual.to_csv(path_or_buf=fr"{PATH_RESULTS}results_annual.csv", sep=";", encoding="utf-8")
 
     # Plot the monthly yield
     result_monthly.index = result_monthly.index.astype(str)
     result_monthly.plot.bar(rot=90, title="Monthly yield", ylabel="Energy in kWh", grid=True)
     plt.tight_layout()
-    plt.show()
+    # plt.show()
+    plt.savefig("monthly_yield.png")
