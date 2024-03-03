@@ -67,7 +67,7 @@ def modul1():
     celltype = "amorphous"  # 'monoSi', 'multiSi', 'polySi', 'cis', 'cigs', 'cdte', 'amorphous'
     width = 1.108
     length = 1.308
-    ptc = 95
+    ptc = None
     stc = 105
     bifacial = 0  # 0: Not Bifacial ; 1: Bifacial
     technology = "2-a-Si"
@@ -161,7 +161,7 @@ def modul3():
     celltype = "monoSi"  # 'monoSi', 'multiSi', 'polySi', 'cis', 'cigs', 'cdte', 'amorphous'
     width = 0.990
     length = 1.660
-    ptc = 215.04
+    ptc = None
     stc = 240
     bifacial = 0  # 0: Not Bifacial ; 1: Bifacial
     technology = "mono-si"
@@ -241,7 +241,7 @@ def modul4():
     celltype = "amorphous"  # 'monoSi', 'multiSi', 'polySi', 'cis', 'cigs', 'cdte', 'amorphous'
     width = 0.990
     length = 1.660
-    ptc = 220
+    ptc = None
     stc = 245
     bifacial = 0  # 0: Not Bifacial ; 1: Bifacial
     technology = "Thin Film a-Si"
