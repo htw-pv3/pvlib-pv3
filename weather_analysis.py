@@ -129,15 +129,10 @@ def year_plot_stacked(df):
 
 
 if __name__ == "__main__":
-    # Filtering the data
-    # df = df.loc[df.index.month == 4]
-    # OR between:
-    # df = df.loc[(df.index.month > 3) & (df.index.month < 6)]
-    # df = df.loc[(df.index.day > 19) & (df.index.day < 30)]
-
     ####################################################
     # Analyzing the HTW Weather-Data Plot with the gaps
     ####################################################
+    month_names = [cal.month_name[i] for i in range(1, 13)]  # Create a list of month name strings
 
     # Read the Dataframe
     # For the htw weather file you have to change the column names
@@ -170,6 +165,8 @@ if __name__ == "__main__":
     # Resample the DataFrame
     df_htw = df_htw.resample("h").mean()  # in Wh/m²
     df_htw = df_htw.resample("d").sum()  # into daily data
+    htw_monthly = df_htw.resample("ME").sum() / 1000  # into monthly data
+    htw_monthly.index = month_names  # change index names
 
     ###########################################
     # Analyzing the open_fred Weather-Data Plot
@@ -184,17 +181,36 @@ if __name__ == "__main__":
     df_fred = df_fred.ghi
 
     # Resample the DataFrame
+    # Into daily data:
     df_fred = df_fred.resample("h").mean()  # in Wh/m²
     df_fred = df_fred.resample("d").sum()  # into daily data
+    fred_monthly = df_fred.resample("ME").sum() / 1000  # into monthly data
+    fred_monthly.index = month_names  # change index names
 
     ################
     # Plot the data
     ################
-    plot = True  # Set to True or False
-    if plot:
+    plot_yearly = False  # Set to True or False
+    if plot_yearly:
         year_plot_stacked(stacked).show()
         year_plot(df_htw, title="HTW Data").show()
         year_plot(df_fred, title="Open_fred Data").show()
+
+    ########################
+    # Plot monthly results
+    ########################
+    plot_monthly = True  # Set to True or False
+
+    results_monthly = pd.DataFrame()
+    results_monthly["HTW"] = htw_monthly
+    results_monthly["Openfred"] = fred_monthly
+
+    if plot_monthly:
+        results_monthly.plot(kind="bar", figsize=(14, 6))
+        plt.grid(axis="y")
+        plt.ylabel("Irradiation in kWh/m²")
+        plt.tight_layout()
+        plt.show()
 
     ##################
     # Print total sum
@@ -202,3 +218,6 @@ if __name__ == "__main__":
     print(f"{' Results ':#^50}")
     print(f"HTW: Total anual irradiation: {round(df_htw.sum() / 1000, 1)} kWh/m²")
     print(f"Openfred: Total anual irradiation: {round(df_fred.sum() / 1000, 1)} kWh/m²")
+    print("\n")
+    print("Monthly results HTW:")
+    print(results_monthly)
