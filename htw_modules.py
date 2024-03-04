@@ -61,7 +61,6 @@ def modul1():
     -------
     DataFrame
         Contains the module parameters due to CEC convention.
-
     """
     # Typical manufacturer data-sheet parameters:
     celltype = "amorphous"  # 'monoSi', 'multiSi', 'polySi', 'cis', 'cigs', 'cdte', 'amorphous'
@@ -127,8 +126,6 @@ def modul1():
         "Date": ""
     }
     modules["Schott_ASI_105"] = list(module_1.values())
-
-    # return pvsystem.retrieve_sam('CECMod')["BannerSolar_ISB20_1BSTC_105"]
     return modules["Schott_ASI_105"]
 
 
@@ -140,9 +137,7 @@ def modul2():
     -------
     DataFrame
         Contains the module parameters due to CEC convention.
-
     """
-
     module_2 = pvsystem.retrieve_sam('CECMod')["Aleo_Solar_S19y285"]
     return module_2
 
@@ -155,7 +150,6 @@ def modul3():
     -------
     DataFrame
         Contains the module parameters due to CEC convention.
-
     """
     # Typical manufacturer data-sheet parameters:
     celltype = "monoSi"  # 'monoSi', 'multiSi', 'polySi', 'cis', 'cigs', 'cdte', 'amorphous'
@@ -220,10 +214,7 @@ def modul3():
         "Version": "",
         "Date": ""
     }
-
     modules["Aleo_Solar_S18_240"] = list(module_3.values())
-
-    # return pvsystem.retrieve_sam('CECMod')["alfasolar_alfasolar_P6L60_240"]
     return modules["Aleo_Solar_S18_240"]
 
 
@@ -235,7 +226,6 @@ def modul4():
     -------
     DataFrame
         Contains the module parameters due to CEC convention.
-
     """
     # Typical manufacturer data-sheet parameters:
     celltype = "amorphous"  # 'monoSi', 'multiSi', 'polySi', 'cis', 'cigs', 'cdte', 'amorphous'
@@ -300,10 +290,7 @@ def modul4():
         "Version": "",
         "Date": ""
     }
-
     modules["Aleo_Solar_S19_245"] = list(module_4.values())
-
-    # return pvsystem.retrieve_sam('CECMod')["American_Solar_Wholesale_ASW_245P"]
     return modules["Aleo_Solar_S19_245"]
 
 
