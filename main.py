@@ -17,6 +17,9 @@ Infos:
     nomenclature for pv-software: https://duramat.github.io/pv-terms/
 """
 
+# Import default libraries
+import calendar as cal
+
 # Import libraries
 import pvlib
 import pandas as pd
@@ -277,6 +280,9 @@ if __name__ == "__main__":
     for model in models:
         result_monthly[model.name] = round(model.results.ac.resample('ME').sum() / 1000, 1)  # in kWh
 
+    # Change the index of the monthly results (month name strings)
+    result_monthly.index = month_names = [cal.month_name[i] for i in range(1, 13)]
+
     # Create annual results DataFrame
     result_annual = pd.DataFrame({
         "annual_yield": result_monthly.sum()
@@ -301,8 +307,7 @@ if __name__ == "__main__":
     # result_annual.to_csv(path_or_buf=fr"{PATH_RESULTS}results_annual.csv", sep=";", encoding="utf-8")
 
     # Plot the monthly yield
-    result_monthly.index = result_monthly.index.astype(str)
-    result_monthly.plot.bar(rot=90, title="Monthly yield", ylabel="Energy in kWh", grid=True)
+    result_monthly.plot.bar(rot=90, title="Monthly yield", ylabel="Energy in $kWh$", grid=True)
     plt.tight_layout()
     # plt.show()
     plt.savefig("monthly_yield.png")
