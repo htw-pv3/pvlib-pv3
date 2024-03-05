@@ -1,0 +1,27 @@
+Variable,Beschreibung
+Name,Modulename
+Technology,Moduletechnology
+Bifacial,0: not Bifacial 1: Bifacial
+STC,Power at STC in W
+PTC,(PVUSA Test Conditions) PTC are 1.000 Watts per square meter solar irradiance 20 degrees C air temperature and wind speed of 1 meter per second at 10 meters above ground level
+A_c,Module Area in m²
+Length,Module length in m
+Width,Module width in m
+N_s,Number of cells
+I_sc_ref,Short-Circuit current (Reference) in A
+V_oc_ref,Open-Circuit voltage (Reference) in V
+I_mp_ref,Current at maximum power point (Reference) in A
+V_mp_ref,Voltage at maximum power point (Reference) in A
+alpha_sc,Temperature coefficient of short circuit current in A/°C (= A/K)
+beta_oc,Temperature coefficient of open circuit voltage in V/°C = V/K)
+T_NOCT,Temperature at NOCT in °C (Nominal Operating Cell Temperature)
+a_ref,The product of the usual diode ideality factor (n unitless) number of cells in series (Ns) and cell thermal voltage at reference conditions in V
+I_L_ref,The light-generated current (or photocurrent) at reference conditions in A
+I_o_ref,The dark or diode reverse saturation current at reference conditions in A
+R_s,The series resistance at reference conditions in Ohm
+R_sh_ref,The shunt resistance at reference conditions in Ohm
+Adjust,The adjustment to the temperature coefficient for short circuit current in %
+gamma_r,Temperature coefficient of power at maximum point point %/°C (= %/K)
+BIPV,N: no Y: yes
+Version,Version
+Date,Date
