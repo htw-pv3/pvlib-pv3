@@ -1,6 +1,6 @@
 # PV3 - SonnJA pvlib model
 
-Read the [docs](https://htw-pv3.github.io/pvlib/).
+Read the [docs](https://htw-pv3.github.io/pvlib-pv3/).
 
 ## (Adaptation of the existing model)
 
