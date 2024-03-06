@@ -8,11 +8,13 @@
       
       
       
+        <link rel="canonical" href="https://pv3-docu.com/pvlib-config/">
+      
       
         <link rel="prev" href="../pvlib-installation/">
       
       
-        <link rel="next" href="../wetterdaten/">
+        <link rel="next" href="../pvlib-wetterdaten/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -292,7 +294,7 @@
             
   
   <span class="md-ellipsis">
-    PvLib-pv3
+    Pvlib-pv3
   </span>
   
 
@@ -302,7 +304,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            PvLib-pv3
+            Pvlib-pv3
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -384,11 +386,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../wetterdaten/" class="md-nav__link">
+      <a href="../pvlib-wetterdaten/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Wetterdaten
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pvlib-modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modulauswahl
   </span>
   
 
@@ -460,7 +483,9 @@
   <h1>Konfiguration</h1>
 
 <p>Das Projekt kann mit der Software PyCharm editiert und ausgeführt werden.
-Damit die Berechnung erfolgreich durchgeführt werden kann, müssen in der Datei <strong>"config.py"</strong> einige globale Informationen bereitgestellt werden. Hier wird aktuell die Location der HTW-PV-Anlage (lat, lon) sowie die Dateipfade der zu verwendenden Wetterdaten definiert. Wenn die bereitgestellten CSV Dateien verwendet werden sollen, besteht kein Handlungsbedarf.</p>
+Damit die Berechnung erfolgreich durchgeführt werden kann, müssen in der Datei <strong>"config.py"</strong> einige globale Informationen bereitgestellt werden.</p>
+<p>Hier wird die Location der HTW-PV-Anlage (<code>HTW_LAT</code>, <code>HTW_LON</code>) sowie die Dateipfade der zu verwendenden Wetterdaten definiert (<code>PATH_HTW_WEATHER</code>, <code>PATH_FREDWEATHER</code>). Wenn die bereitgestellten CSV-Dateien verwendet werden sollen, besteht kein Handlungsbedarf. Ein Zielpfad muss angegeben werden, wenn die Ausgabedateien der Simulation an einem anderen Ort als im Softwareverzeichnis bzw. Pfad, in dem das <strong>"main.py"</strong> Skript ausgeführt wird, gespeichert werden sollen(<code>PATH_RESULTS</code>).</p>
+<p><img align="left" alt="Konfigurationsdatei" src="../img/config.png" width="700" /></p>
 
 
 
@@ -507,7 +532,7 @@ Damit die Berechnung erfolgreich durchgeführt werden kann, müssen in der Datei
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
