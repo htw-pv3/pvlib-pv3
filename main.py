@@ -310,4 +310,4 @@ if __name__ == "__main__":
     result_monthly.plot.bar(rot=90, title="Monthly yield", ylabel="Energy in $kWh$", grid=True)
     plt.tight_layout()
     # plt.show()
-    plt.savefig("monthly_yield.png")
+    plt.savefig("results_monthly.png")
