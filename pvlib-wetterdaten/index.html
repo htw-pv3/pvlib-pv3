@@ -238,46 +238,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../git/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Git
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sql/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    SQL
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -292,10 +252,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -306,8 +266,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Pvlib-pv3
           </label>
@@ -568,8 +528,8 @@ Der Openfred Datensatz liefert diese Werte bereits, während bei den HTW-Wetterd
 Das wird mit der Funktion "calculate_diffuse_irradiation" durchgeführt, welche Funktionen der pvlib-python (<a href="https://pvlib-python.readthedocs.io/en/stable/reference/generated/pvlib.irradiance.erbs.html">erbs model</a>) benutzt und die entsprechenden Strahlungskomponenten berechnet.</p>
 <p>In der Datei <strong>"config.py"</strong>  müssen die Pfade angegeben werden, in denen sich die CSV Dateien befinden. Wird nur der Dateiname selbst angegeben (z.B. "pv3_weather_2015_filled_mview.csv"), wird davon ausgegangen, dass sich die Datei im Softwareverzeichnis befindet (siehe <a href="../pvlib-config/">Konfiguration</a>).</p>
 <h2 id="wetterdatenanalyse">Wetterdatenanalyse</h2>
-<p>Durch Ausführend des Skripts <strong>"weather_analysis.py"</strong> können die beiden eingelesenen Wetterdaten miteinander verglichen werden. Es kann eine monatliche und jährliche Grafiken dargestellt werden, indem den Variablen <code>plot_monthly</code> und <code>plot_yearly</code> die Werte "True" oder "False" zugewiesen werden.</p>
-<p>Täglich aufsummierten Werte für die globale horizontal Bestrahlung mit aufgefüllten Messlücken der HTW Wetterdaten:
+<p>Durch Ausführen des Skripts <strong>"weather_analysis.py"</strong> können die beiden eingelesenen Wetterdaten miteinander verglichen werden. Es kann eine monatliche und jährliche Grafiken dargestellt werden, indem den Variablen <code>plot_monthly</code> und <code>plot_yearly</code> die Werte "True" oder "False" zugewiesen werden.</p>
+<p>Täglich aufsummierte Werte für die globale horizontal Bestrahlung mit aufgefüllten Messlücken der HTW Wetterdaten:
 <img align="left" alt="HTW Messlücken" src="../img/weatherdata_htw_gaps.png" width="700" /></p>
 <p>Gegenüberstellung der monatlich aufsummierten Werte für die globale horizontal Bestrahlung:
 <img align="left" alt="Wetterdatenvergleich" src="../img/comparison_htw_fred_monthly.png" width="700" /></p>

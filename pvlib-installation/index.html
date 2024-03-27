@@ -238,46 +238,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../git/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Git
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sql/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    SQL
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -292,10 +252,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -306,8 +266,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Pvlib-pv3
           </label>
@@ -625,25 +585,25 @@
 
   <h1>Installation</h1>
 
-<p>Für die Installation der PvLib-pv3 wird git benötigt. Sollte git noch nicht installiert sein, muss dies zuerst getan werden.</p>
-<p><a href="../installationen/">Git installieren</a></p>
+<p>Für die Installation der Pvlib-pv3 wird git benötigt. Sollte git noch nicht installiert sein, muss dies zuerst getan werden. <a href="../installationen/">Git installieren</a>.</p>
 <h2 id="git-repository-clonen">Git Repository clonen</h2>
 <p>Im ersten Schritt wird das <a href="https://github.com/htw-pv3/pvlib">git repository </a> lokal geclont.
 Dafür wird zunächst zu dem Ordner navigiert, wo das Projekt geclont werden soll.
 Anschließend wird das git Terminal geöffnet (Rechtsklick -&gt; git bash here) und der folgenden Befehl eingegeben.</p>
 <ul>
-<li><code>git clone https://github.com/htw-pv3/pvlib.git</code></li>
+<li><code>git clone https://github.com/htw-pv3/pvlib-pv3.git</code></li>
 </ul>
 <p>Nun wird das Projekt lokal erstellt.</p>
 <h2 id="installieren-der-benotigten-module">Installieren der benötigten Module</h2>
-<p>Innerhalb des Codes werden Bibliotheken verwendet. Damit dies funktionieren kann, müssen die benötigten Module installiert werden.</p>
+<p>Innerhalb des Codes werden verschiedene Bibliotheken verwendet. Damit dies funktionieren kann, müssen die benötigten Module installiert werden.</p>
 <h3 id="virtuelle-umgebung-erstellen">Virtuelle Umgebung erstellen</h3>
-<p>In Python wird für jedes Projekt dafür sogennante virtual environments (kurz "venv") verwendet. Es gibt mehrere Möglichkeiten diese zu erstellen. Eine Möglichkeit ist die Verwendung von der in pip integrierten venv Funtkion.</p>
+<p>In Python werdem für jedes Projekt sogennante virtual environments (kurz "venv") verwendet. Es gibt mehrere Möglichkeiten diese zu erstellen. Eine Möglichkeit ist die Verwendung von der in pip integrierten venv Funtkion.</p>
 <p>Zuerst wird das Terminal geöffnet und zu dem Projekt navigert. Dies kann mit dem Befehl <code>cd &lt;Pfad&gt;</code> erledigt werden.
-Mit dem folgenden Befehl wird dann eine virtuelle Umgebung mit dem Namen "env" erstellt. Dadurch werden in dem aktuellen Verzeichnis die Ordnerstruktur der venv erstellt.</p>
+Mit dem folgenden Befehl wird dann eine virtuelle Umgebung mit dem Namen "env" erstellt. Dadurch wird in dem aktuellen Verzeichnis die Ordnerstruktur der venv erstellt.</p>
 <ul>
 <li><code>python3 -m venv env</code></li>
 </ul>
+<p>Selbstverständlich kann auch ein anderer Name für die Umgebung gewählt werden. Dies ist in den nachfolgenden Schritten dann entsprechend zu berücksichtigen.</p>
 <h3 id="installieren-der-module-in-der-erstellten-umgebung">Installieren der Module in der erstellten Umgebung</h3>
 <p>Nun muss zunächst im Terminal die neu erstellte Umgebung aktiviert werden. Dabei ist darauf zu achten, dass der richtige Name der Umgebung genommen wird. Wenn der vorherige Befehl genau so verwendet wurde, lautet der Name der Umgebung "env" und die folgenden Befehle können verwendet werden.</p>
 <ul>
@@ -658,7 +618,7 @@ Im letzten Schritt werden dann die Module installiert:</p>
 <p>Der Installationsvorgang ist abgeschlossen, sobald im Terminal wieder die Befehlszeile erscheint.
 Durch den Befehl <code>deactivate</code> kann die venv wieder deaktiviert werden.</p>
 <h2 id="struktur">Struktur</h2>
-<p>Nach der Installation sollte die Software folgende Struktur aufweisen:</p>
+<p>Nach der Installation sollte die Software zusätzlich zur folgenden Struktur einen Ordner für die venv aufweisen.</p>
 <p>/pvlib-pv3/ <br />
 |-- setup.py <br />
 |-- config.py <br />

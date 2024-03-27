@@ -236,46 +236,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../git/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Git
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sql/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    SQL
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -290,10 +250,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -304,8 +264,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Pvlib-pv3
           </label>
@@ -580,8 +540,8 @@
 <h3 id="pvsystem">PVSystem</h3>
 <p>Mit dem PVSystem-object werden die Parameter der PV-Anlage festgelegt. Dazu zählen u.A. die Modul- und Wechselrichtereigenschaften, die Anzahl der Module, die Ausrichtung, das Temperaturmodell usw. Es können hierbei auch mehrere Strings als arrays definiert werden, die an einem Wechselrichter angeschlossen werden.</p>
 <h3 id="modelchain">ModelChain</h3>
-<p>Enthält das PVsystem. Hierbei wird die Location bestimmt, welche mit dem, in der <strong>"config.py"</strong> bereitgestellten Breiten- und Längengrad definiert wird. Außerdem können hier noch Verlustmodelle des PVsystems definiert werden.</p>
-<p>Um die Simulation durchzuführen werden die Wetterdaten benötigt und als Parameter in der "run_model" Funktion übergeben.</p>
+<p>Das ModelChain-object enthält das PVsystem. Hierbei wird die Location bestimmt, welche mithilfe des bereitgestellten Breiten- und Längengrads aus der <strong>"config.py"</strong>  Datei definiert wird. Außerdem können hier noch Verlustmodelle des PVsystems definiert werden.</p>
+<p>Um die Simulation durchzuführen, werden die Wetterdaten benötigt und als Parameter in der "run_model" Funktion übergeben.</p>
 <h2 id="ausgabe-der-simulation">Ausgabe der Simulation</h2>
 <p>Eine Grafik und eine Tabelle der monatlichen AC-Erträge (in kWh) der einzelnen Wechselrichter werden als ".png" und ".csv" Datei im angegebenen Ordnerpfad abgelegt. Wenn in der <strong>"config.py"</strong> kein Ordnerpfad angegeben ist, werden die Dateien dort gespeichert, von wo aus das <strong>"main.py"</strong> Skript ausgeführt wird (siehe <a href="../pvlib-config/">Konfiguration</a>).</p>
 <p><img align="left" alt="Monthly Yield" src="../img/main_results.png" width="500" /></p>

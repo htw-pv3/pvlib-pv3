@@ -233,46 +233,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../git/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Git
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sql/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    SQL
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -287,10 +247,10 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -301,8 +261,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Pvlib-pv3
           </label>
@@ -497,12 +457,13 @@
 <li><code>v_oc</code> Leerlaufspannung in V</li>
 <li><code>i_sc</code> Kurzschlussstrom in A</li>
 <li><code>alpha_sc</code> Temperaturkoeffizient bei Kurzschluss in A/°C (= A/K)</li>
-<li><code>beta_voc</code> Temperaturkoeffizient bei Leerlaufspannung in V/°C = V/K)</li>
+<li><code>beta_voc</code> Temperaturkoeffizient bei Leerlaufspannung in V/°C (= V/K)</li>
 <li><code>gamma_pmp</code> Temperaturkoeffizient der Leistung im MPP %/°C (= %/K)</li>
 <li><code>cells_in_series</code> Anzahl der Zellen (in Serie)</li>
 <li><code>temp_ref</code> Referenztemperatur (I.d.R 25°C)</li>
 </ul>
-<p>Die CSV Datei <strong>"module_parameter_description.csv"</strong> enthält alle Parameterdefinitionen, welche für ein Modul mit dem "CEC" Modell benötigt werden.</p>
+<p>Die CSV Datei <strong>"module_parameter_description.csv"</strong> enthält alle Parameterdefinitionen, welche für ein Modul mit dem "CEC" Modell benötigt werden.
+Mithilfe der Funktion <a href="https://pvlib-python.readthedocs.io/en/stable/reference/generated/pvlib.ivtools.sdm.fit_cec_sam.html">"fit_cec_sam"</a> der pvlib-python werden die übrigen Parameter, welche sich nicht aus einem typischen Herstellerdatenblatt herauslesen lassen, berechnet.</p>
 
 
 
