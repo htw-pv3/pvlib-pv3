@@ -270,44 +270,85 @@ if __name__ == "__main__":
     weather_fred = df_fred.resample("h").mean()  # in Wh
     weather_fred = weather_fred[weather_fred.index.year > 2014]
 
-    # TODO: Run model with both weather data and compare!
-    # Run the model
-    for model in models:
-        model.run_model(weather=weather_htw)
+    # Run the model (HTW)
+    for model_htw in models:
+        model_htw.run_model(weather=weather_htw)
 
     # Create monthly results DataFrame
-    result_monthly = pd.DataFrame()
-    for model in models:
-        result_monthly[model.name] = round(model.results.ac.resample('ME').sum() / 1000, 1)  # in kWh
+    result_monthly_htw = pd.DataFrame()
+    for model_htw in models:
+        result_monthly_htw[model_htw.name] = round(model_htw.results.ac.resample('ME').sum() / 1000, 1)  # in kWh
 
     # Change the index of the monthly results (month name strings)
-    result_monthly.index = month_names = [cal.month_name[i] for i in range(1, 13)]
+    result_monthly_htw.index = month_names = [cal.month_name[i] for i in range(1, 13)]
 
     # Create annual results DataFrame
-    result_annual = pd.DataFrame({
-        "annual_yield": result_monthly.sum()
+    result_annual_htw = pd.DataFrame({
+        "annual_yield": result_monthly_htw.sum()
     })
 
     # Show the results (console)
     print("#" * 50)
-    print(f"{' Execution successful! ':^50}")
+    print(f"{' Execution successful! (HTW) ':^50}")
     print("#" * 50, "\n")
 
-    print(f"{' Results Monthly ':#^50}")
-    print(result_monthly, "\n")
+    print(f"{' Results Monthly HTW ':#^50}")
+    print(result_monthly_htw, "\n")
 
-    print(f"{' Results Annual ':#^50}")
-    print(result_annual, "\n")
+    print(f"{' Results Annual HTW ':#^50}")
+    print(result_annual_htw, "\n")
 
-    print(f"{' Results Total ':#^50}")
-    print(result_annual.sum())
+    print(f"{' Results Total HTW ':#^50}")
+    print(result_annual_htw.sum())
 
     # Export the results to csv files
-    result_monthly.to_csv(path_or_buf=fr"{PATH_RESULTS}results_monthly.csv", sep=";", encoding="utf-8")
+    result_monthly_htw.to_csv(path_or_buf=fr"{PATH_RESULTS}results_monthly_htw.csv", sep=";", encoding="utf-8")
     # result_annual.to_csv(path_or_buf=fr"{PATH_RESULTS}results_annual.csv", sep=";", encoding="utf-8")
 
     # Plot the monthly yield
-    result_monthly.plot.bar(rot=90, title="Monthly yield", ylabel="Energy in $kWh$", grid=True)
+    result_monthly_htw.plot.bar(rot=90, title="Monthly yield", ylabel="Energy in $kWh$", grid=True)
     plt.tight_layout()
     # plt.show()
-    plt.savefig("results_monthly.png")
+    plt.savefig("results_monthly_htw.png")
+
+
+# Run the model (FRED)
+    for model_fred in models:
+        model_fred.run_model(weather=weather_fred)
+
+    # Create monthly results DataFrame
+    result_monthly_fred = pd.DataFrame()
+    for model_fred in models:
+        result_monthly_fred[model_fred.name] = round(model_fred.results.ac.resample('ME').sum() / 1000, 1)  # in kWh
+
+    # Change the index of the monthly results (month name strings)
+    result_monthly_fred.index = month_names = [cal.month_name[i] for i in range(1, 13)]
+
+    # Create annual results DataFrame
+    result_annual_fred = pd.DataFrame({
+        "annual_yield": result_monthly_fred.sum()
+    })
+
+    # Show the results (console)
+    print("#" * 50)
+    print(f"{' Execution successful! (FRED) ':^50}")
+    print("#" * 50, "\n")
+
+    print(f"{' Results Monthly FRED ':#^50}")
+    print(result_monthly_fred, "\n")
+
+    print(f"{' Results Annual FRED ':#^50}")
+    print(result_annual_fred, "\n")
+
+    print(f"{' Results Total FRED ':#^50}")
+    print(result_annual_fred.sum())
+
+    # Export the results to csv files
+    result_monthly_fred.to_csv(path_or_buf=fr"{PATH_RESULTS}results_monthly_fred.csv", sep=";", encoding="utf-8")
+    # result_annual.to_csv(path_or_buf=fr"{PATH_RESULTS}results_annual.csv", sep=";", encoding="utf-8")
+
+    # Plot the monthly yield
+    result_monthly_fred.plot.bar(rot=90, title="Monthly yield", ylabel="Energy in $kWh$", grid=True)
+    plt.tight_layout()
+    # plt.show()
+    plt.savefig("results_monthly_fred.png")
