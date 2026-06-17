@@ -1,0 +1,17 @@
+name: d_py310_pvlib
+channels:
+    - conda-forge
+    - defaults
+dependencies:
+    - python=3.10
+    - jupyter
+    - matplotlib
+    - pandas
+    - plotly
+    - sqlalchemy
+    - seaborn
+    - xlrd
+    - openpyxl
+    - psycopg2
+    - pip:
+        - pvlib
